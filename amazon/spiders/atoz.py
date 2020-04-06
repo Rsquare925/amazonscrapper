@@ -8,11 +8,13 @@ from ..items import AmazonItem
 class AtozSpider(CrawlSpider):
     name = 'atoz'
     allowed_domains = ['www.amazon.com']
+    # this is the url which we scrape
     start_urls = ['https://www.amazon.com/s?k=Best+books&i=stripbooks&rh=n%3A17%2Cp_n_feature_twelve_browse-bin%3A10159408011&dc&qid=1585669767&rnid=5393827011&ref=sr_nr_p_n_feature_twelve_browse-bin_4/']
-
+    # this is the user agent of browser
     user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36"
 
     def start_requests(self):
+        # here we sending request to the url and setting user-agent
         yield scrapy.Request(url="https://www.amazon.com/s?k=Best+books&i=stripbooks&rh=n%3A17%2Cp_n_feature_twelve_browse-bin%3A10159408011&dc&qid=1585669767&rnid=5393827011&ref=sr_nr_p_n_feature_twelve_browse-bin_4/", headers={
             'User-Agent': self.user_agent
         })
