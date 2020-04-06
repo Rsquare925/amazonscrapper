@@ -26,6 +26,7 @@ class AtozSpider(CrawlSpider):
         return request
 
     def get_price(self, selector):
+        # These all are the selectors to selecting price
         hardbook = selector.xpath(".//descendant::span[@class='a-color-secondary'][2]/text()").get()
         book = selector.xpath(".//descendant::span[@class='a-size-base a-color-secondary'][2]/text()").get()
         book1 = selector.xpath(".//descendant::span[@class='a-color-secondary'][3]/text()").get()
@@ -46,6 +47,7 @@ class AtozSpider(CrawlSpider):
             return book4.replace("\n", "").strip(" ")
 
     def get_title(self, selector):
+        # this is the selector to selecting title
         title = selector.xpath(".//span[@id='productTitle']/text()").get()
         if title is not None:
             return title.replace("\n", "").strip(" ")
@@ -53,6 +55,7 @@ class AtozSpider(CrawlSpider):
             return selector.xpath(".//span[@id='ebooksProductTitle']/text()").get().replace("\n", "").strip(" ")
 
     def get_author(self, selector):
+        # these are the selectors to select author name
         author = selector.xpath(".//descendant::a[@class='a-link-normal contributorNameID'][1]/text()").get()
         author1 = selector.xpath(".//descendant::a[@class='a-link-normal'][1]/text()").get()
         if author is not None:
@@ -63,6 +66,7 @@ class AtozSpider(CrawlSpider):
             return "Fuck !!!"
 
     def get_image(self, selector):
+        # these are the selectors to select image link
         image = selector.xpath("descendant::img[@id='main-image']/@src").get()
         image1 = selector.xpath(".//descendant::img[@id='ebooksImgBlkFront']/@src").get()
         image2 = selector.xpath(".//descendant::img[@id='sitbLogoImg']/@src").get()
